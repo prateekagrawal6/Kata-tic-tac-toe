@@ -45,4 +45,16 @@ class GameUtilityTest {
         moves.add("9");
         assertTrue(GameUtility.isBoardGridMovesExhausted(moves));
     }
+
+
+    @Test
+    @DisplayName("Should check if any player has met condition to be declared the Winner")
+    void checkWinner() {
+        Board board = new Board();
+        board.placeInputAtBoardGrid("1");
+        board.placeInputAtBoardGrid("2");
+        assertTrue(GameUtility.checkWinner(board.getGrid()) == null);
+        board.placeInputAtBoardGrid("3");
+        assertTrue(GameUtility.checkWinner(board.getGrid()).equals("X"));
+    }
 }
