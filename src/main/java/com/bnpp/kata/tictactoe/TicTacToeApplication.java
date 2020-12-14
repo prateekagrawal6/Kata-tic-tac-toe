@@ -1,5 +1,8 @@
 package com.bnpp.kata.tictactoe;
 
+import com.bnpp.kata.tictactoe.exception.GameOverException;
+import com.bnpp.kata.tictactoe.exception.InvalidInputException;
+import com.bnpp.kata.tictactoe.exception.PositionAlreadyOccupiedException;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -12,6 +15,12 @@ public class TicTacToeApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(TicTacToeApplication.class, args);
 		printMenu();
+		Game game = new Game();
+		try {
+			game.play();
+		} catch (InvalidInputException | PositionAlreadyOccupiedException | GameOverException exception) {
+			logger.severe(exception.getMessage());
+		}
 	}
 
 	private static void printMenu() {
