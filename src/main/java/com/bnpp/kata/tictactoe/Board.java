@@ -5,26 +5,23 @@ public class Board {
 
     public Board() {
         grid = new String[3][3];
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                grid[i][j] = "_";
+        for (int row = 0; row < 3; row++) {
+            for (int col = 0; col < 3; col++) {
+                grid[row][col] = "_";
             }
         }
     }
 
     String showBoard() {
-        String board = "\n";
-        for (int i = 0; i < 3; i++) {
-            String internalRow = "";
-            for (int j = 0; j < 3; j++) {
-                if(j!=2){
-                    internalRow += grid[i][j] + " | ";
-                }else
-                    internalRow += grid[i][j];
+        StringBuilder board = new StringBuilder("\n");
+        for (int row = 0; row < 3; row++) {
+            StringBuilder builder = new StringBuilder();
+            for (int col = 0; col < 3; col++) {
+                builder.append(grid[row][col] + (col != 2 ? " | " : ""));
             }
-            board += internalRow+"\n";
+            board.append(builder.toString()).append("\n");
         }
-        return board;
+        return board.toString();
     }
 
 
