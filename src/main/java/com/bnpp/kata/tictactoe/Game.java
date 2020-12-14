@@ -30,6 +30,12 @@ public class Game {
         }
         board.placeInputAtBoardGrid(inputPosition);
         logger.info(board.showBoard());
+        if (board.getMoves().size() > 4 ){
+            winner = GameUtility.checkWinner(board.getGrid());
+            if (winner != null) {
+                logger.info("Player " + winner + " Wins!!");
+            }
+        }
     }
 
     public String getWinner() {

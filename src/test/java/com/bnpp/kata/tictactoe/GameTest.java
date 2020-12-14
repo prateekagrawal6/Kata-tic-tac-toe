@@ -44,6 +44,18 @@ class GameTest {
         } catch ( Exception exception ){
             assertSame(exception.getClass(), PositionAlreadyOccupiedException.class);
         }
+        Game newGame = new Game();
+        System.setIn(new ByteArrayInputStream(("1".getBytes())));
+        newGame.play();
+        System.setIn(new ByteArrayInputStream(("2".getBytes())));
+        newGame.play();
+        System.setIn(new ByteArrayInputStream(("5".getBytes())));
+        newGame.play();
+        System.setIn(new ByteArrayInputStream(("4".getBytes())));
+        newGame.play();
+        System.setIn(new ByteArrayInputStream(("3".getBytes())));
+        newGame.play();
+        assertEquals("X", newGame.getWinner());
     }
 
 }
