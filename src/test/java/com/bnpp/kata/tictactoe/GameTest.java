@@ -1,5 +1,6 @@
 package com.bnpp.kata.tictactoe;
 
+import com.bnpp.kata.tictactoe.exception.GameOverException;
 import com.bnpp.kata.tictactoe.exception.InvalidInputException;
 import com.bnpp.kata.tictactoe.exception.PositionAlreadyOccupiedException;
 import org.junit.jupiter.api.BeforeEach;
@@ -28,34 +29,32 @@ class GameTest {
 
     @Test
     @DisplayName("Should allow user to give input and check for any exceptions")
-    void play() throws InvalidInputException, PositionAlreadyOccupiedException {
-        System.setIn(new ByteArrayInputStream(("1".getBytes())));
-        game.play();
-        assertTrue(game.getBoard().showBoard().contains("X | _ | _"));
+    void play() throws InvalidInputException, PositionAlreadyOccupiedException, GameOverException {
         System.setIn(new ByteArrayInputStream("12".getBytes()));
         try {
             game.play();
         } catch ( Exception exception ){
             assertSame(exception.getClass(), InvalidInputException.class);
         }
-        System.setIn(new ByteArrayInputStream("1".getBytes()));
+        System.setIn(new ByteArrayInputStream("1\n1".getBytes()));
         try {
             game.play();
         } catch ( Exception exception ){
             assertSame(exception.getClass(), PositionAlreadyOccupiedException.class);
         }
         Game newGame = new Game();
-        System.setIn(new ByteArrayInputStream(("1".getBytes())));
-        newGame.play();
-        System.setIn(new ByteArrayInputStream(("2".getBytes())));
-        newGame.play();
-        System.setIn(new ByteArrayInputStream(("5".getBytes())));
-        newGame.play();
-        System.setIn(new ByteArrayInputStream(("4".getBytes())));
-        newGame.play();
-        System.setIn(new ByteArrayInputStream(("3".getBytes())));
+        System.setIn(new ByteArrayInputStream(("1\n2\n5\n4\n9").getBytes()));
         newGame.play();
         assertEquals("X", newGame.getWinner());
+
+        Game anotherGame = new Game();
+        System.setIn(new ByteArrayInputStream(("1\n2\n3\n4\n5\n7\n6\n9\n8".getBytes())));
+        try {
+            anotherGame.play();
+        }
+        catch (Exception exception){
+            assertSame(exception.getClass(),GameOverException.class);
+        }
     }
 
 }

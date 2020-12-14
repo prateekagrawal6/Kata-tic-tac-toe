@@ -36,8 +36,6 @@ public class GameUtility {
         } else if (grid[1][0].equals(grid[1][1]) && grid[1][0].equals(grid[1][2])) {
             winner = grid[1][0];
         }
-        if (winner.equals("_"))
-            winner = null;
         return winner;
     }
 
