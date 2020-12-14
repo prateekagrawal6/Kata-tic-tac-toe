@@ -33,7 +33,11 @@ class BoardTest {
     @DisplayName("Should place the input position at the board grid")
     void placeInputAtBoardGrid() {
         board.placeInputAtBoardGrid("1");
-        String boardStructureAt1= "X | _ | _";
+        String boardStructureAt1 = "X | _ | _";
         assertTrue(board.showBoard().contains(boardStructureAt1));
+        board.switchPlayer();
+        board.placeInputAtBoardGrid("2");
+        String boardStructureAt2 = "X | O | _";
+        assertTrue(board.showBoard().contains(boardStructureAt2));
     }
 }
