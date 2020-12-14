@@ -1,5 +1,6 @@
 package com.bnpp.kata.tictactoe;
 
+import com.bnpp.kata.tictactoe.exception.InvalidInputException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -25,12 +26,16 @@ class GameTest {
     }
 
     @Test
-    @DisplayName("Should allow user to give input")
-    void play() {
-        InputStream sysInBackup = System.in; // backup System.in to restore it later
-        ByteArrayInputStream in = new ByteArrayInputStream("1".getBytes());
-        System.setIn(in);
+    @DisplayName("Should allow user to give input and check for any exceptions")
+    void play() throws InvalidInputException {
+        System.setIn(new ByteArrayInputStream(("1".getBytes())));
         game.play();
         assertTrue(game.getBoard().showBoard().contains("X | _ | _"));
+        System.setIn(new ByteArrayInputStream("12".getBytes()));
+        try {
+            game.play();
+        } catch ( Exception exception ){
+            assertSame(exception.getClass(), InvalidInputException.class);
+        }
     }
 }

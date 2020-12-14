@@ -1,5 +1,7 @@
 package com.bnpp.kata.tictactoe;
 
+import com.bnpp.kata.tictactoe.exception.InvalidInputException;
+
 import java.util.Scanner;
 import java.util.logging.Logger;
 
@@ -14,11 +16,14 @@ public class Game {
         winner = null;
     }
 
-    void play() {
+    void play() throws InvalidInputException {
         logger.info(board.showBoard());
         Scanner scanner = new Scanner(System.in);
         logger.info("Enter the position(1-9) for " + board.getCurrentPlayer() + " : ");
         String inputPosition = scanner.next().trim();
+        if (!GameUtility.isValidInput(inputPosition)) {
+            throw new InvalidInputException(inputPosition+" Input position is invalid.");
+        }
         board.placeInputAtBoardGrid(inputPosition);
         logger.info(board.showBoard());
     }
