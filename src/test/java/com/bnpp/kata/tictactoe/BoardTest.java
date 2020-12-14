@@ -28,4 +28,12 @@ class BoardTest {
         board.switchPlayer();
         assertTrue(board.getCurrentPlayer().equals("O"));
     }
+
+    @Test
+    @DisplayName("Should place the input position at the board grid")
+    void placeInputAtBoardGrid() {
+        board.placeInputAtBoardGrid("1");
+        String boardStructureAt1= "X | _ | _";
+        assertTrue(board.showBoard().contains(boardStructureAt1));
+    }
 }

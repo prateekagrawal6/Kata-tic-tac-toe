@@ -1,8 +1,11 @@
 package com.bnpp.kata.tictactoe;
 
+import java.util.ArrayList;
+
 public class Board {
     private String[][] grid;
     private String currentPlayer;
+    private ArrayList<String> moves;
 
     public Board() {
         grid = new String[3][3];
@@ -13,6 +16,8 @@ public class Board {
         }
 
         currentPlayer = "X";
+
+        moves = new ArrayList();
     }
 
     String showBoard() {
@@ -31,6 +36,39 @@ public class Board {
         setCurrentPlayer("X".equals(currentPlayer) ? "O" : "X");
     }
 
+    void placeInputAtBoardGrid(String inputPosition) {
+        moves.add(inputPosition);
+        switch (inputPosition) {
+            case "1":
+                grid[0][0] = currentPlayer;
+                break;
+            case "2":
+                grid[0][1] = currentPlayer;
+                break;
+            case "3":
+                grid[0][2] = currentPlayer;
+                break;
+            case "4":
+                grid[1][0] = currentPlayer;
+                break;
+            case "5":
+                grid[1][1] = currentPlayer;
+                break;
+            case "6":
+                grid[1][2] = currentPlayer;
+                break;
+            case "7":
+                grid[2][0] = currentPlayer;
+                break;
+            case "8":
+                grid[2][1] = currentPlayer;
+                break;
+            case "9":
+                grid[2][2] = currentPlayer;
+                break;
+        }
+    }
+
     public String[][] getGrid() {
         return grid;
     }
@@ -45,5 +83,13 @@ public class Board {
 
     public void setCurrentPlayer(String currentPlayer) {
         this.currentPlayer = currentPlayer;
+    }
+
+    public ArrayList<String> getMoves() {
+        return moves;
+    }
+
+    public void setMoves(ArrayList<String> moves) {
+        this.moves = moves;
     }
 }
