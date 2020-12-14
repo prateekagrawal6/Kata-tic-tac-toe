@@ -1,6 +1,7 @@
 package com.bnpp.kata.tictactoe;
 
 import com.bnpp.kata.tictactoe.exception.InvalidInputException;
+import com.bnpp.kata.tictactoe.exception.PositionAlreadyOccupiedException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -27,7 +28,7 @@ class GameTest {
 
     @Test
     @DisplayName("Should allow user to give input and check for any exceptions")
-    void play() throws InvalidInputException {
+    void play() throws InvalidInputException, PositionAlreadyOccupiedException {
         System.setIn(new ByteArrayInputStream(("1".getBytes())));
         game.play();
         assertTrue(game.getBoard().showBoard().contains("X | _ | _"));
@@ -37,5 +38,12 @@ class GameTest {
         } catch ( Exception exception ){
             assertSame(exception.getClass(), InvalidInputException.class);
         }
+        System.setIn(new ByteArrayInputStream("1".getBytes()));
+        try {
+            game.play();
+        } catch ( Exception exception ){
+            assertSame(exception.getClass(), PositionAlreadyOccupiedException.class);
+        }
     }
+
 }
