@@ -11,8 +11,6 @@ class GameTest {
     @DisplayName("Should initialise game variables or members")
     void initializeGame() {
         Game game = new Game();
-        assertNull(game.getBoard());
-        game.initializeGame();
         assertNotNull(game.getBoard());
         assertNull(game.getWinner());
     }

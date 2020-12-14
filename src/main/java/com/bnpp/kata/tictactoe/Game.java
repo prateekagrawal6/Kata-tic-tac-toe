@@ -4,7 +4,7 @@ public class Game {
     private String winner;
     private Board board;
 
-    void initializeGame() {
+    public Game() {
         board = new Board();
         winner = null;
     }
