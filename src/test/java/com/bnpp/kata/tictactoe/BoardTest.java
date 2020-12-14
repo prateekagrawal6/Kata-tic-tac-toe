@@ -14,4 +14,13 @@ class BoardTest {
         String structure = "_ | _ | _";
         assertTrue(board.showBoard().contains(structure));
     }
+
+    @Test
+    @DisplayName("Should switch player accordingly")
+    void switchPlayer() {
+        Board board = new Board();
+        assertTrue(board.getCurrentPlayer().equals("X"));
+        board.switchPlayer();
+        assertTrue(board.getCurrentPlayer().equals("O"));
+    }
 }

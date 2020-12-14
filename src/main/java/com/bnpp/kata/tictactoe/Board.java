@@ -2,6 +2,7 @@ package com.bnpp.kata.tictactoe;
 
 public class Board {
     private String[][] grid;
+    private String currentPlayer;
 
     public Board() {
         grid = new String[3][3];
@@ -10,6 +11,8 @@ public class Board {
                 grid[row][col] = "_";
             }
         }
+
+        currentPlayer = "X";
     }
 
     String showBoard() {
@@ -24,5 +27,23 @@ public class Board {
         return board.toString();
     }
 
+    void switchPlayer() {
+        setCurrentPlayer("X".equals(currentPlayer) ? "O" : "X");
+    }
 
+    public String[][] getGrid() {
+        return grid;
+    }
+
+    public void setGrid(String[][] grid) {
+        this.grid = grid;
+    }
+
+    public String getCurrentPlayer() {
+        return currentPlayer;
+    }
+
+    public void setCurrentPlayer(String currentPlayer) {
+        this.currentPlayer = currentPlayer;
+    }
 }
