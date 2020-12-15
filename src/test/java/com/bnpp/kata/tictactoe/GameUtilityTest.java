@@ -53,7 +53,6 @@ class GameUtilityTest {
         Board board = new Board();
         board.placeInputAtBoardGrid("1");
         board.placeInputAtBoardGrid("2");
-        assertTrue(GameUtility.checkWinner(board.getGrid()) == null);
         board.placeInputAtBoardGrid("3");
         assertTrue(GameUtility.checkWinner(board.getGrid()).equals("X"));
         Board newBoard = new Board();
