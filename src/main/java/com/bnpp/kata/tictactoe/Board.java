@@ -2,69 +2,71 @@ package com.bnpp.kata.tictactoe;
 
 import java.util.ArrayList;
 
+import static com.bnpp.kata.tictactoe.GameConstant.*;
+
 public class Board {
     private String[][] grid;
     private String currentPlayer;
     private ArrayList<String> moves;
 
     public Board() {
-        grid = new String[3][3];
-        for (int row = 0; row < 3; row++) {
-            for (int col = 0; col < 3; col++) {
-                grid[row][col] = "_";
+        grid = new String[ROW_SIZE][COLUMN_SIZE];
+        for (int row = INDEX_ZERO; row < ROW_SIZE; row++) {
+            for (int col = INDEX_ZERO; col < COLUMN_SIZE; col++) {
+                grid[row][col] = BLANK_VALUE;
             }
         }
 
-        currentPlayer = "X";
+        currentPlayer = PLAYER_X;
 
         moves = new ArrayList();
     }
 
     String showBoard() {
-        StringBuilder board = new StringBuilder("\n");
-        for (int row = 0; row < 3; row++) {
+        StringBuilder board = new StringBuilder(NEWLINE_CHAR);
+        for (int row = INDEX_ZERO; row < ROW_SIZE; row++) {
             StringBuilder builder = new StringBuilder();
-            for (int col = 0; col < 3; col++) {
-                builder.append(grid[row][col] + (col != 2 ? " | " : ""));
+            for (int col = INDEX_ZERO; col < COLUMN_SIZE; col++) {
+                builder.append(grid[row][col] + (col != INDEX_TWO ? PIPE : EMPTY_STRING));
             }
-            board.append(builder.toString()).append("\n");
+            board.append(builder.toString()).append(NEWLINE_CHAR);
         }
         return board.toString();
     }
 
     void switchPlayer() {
-        setCurrentPlayer("X".equals(currentPlayer) ? "O" : "X");
+        setCurrentPlayer(PLAYER_X.equals(currentPlayer) ? PLAYER_O : PLAYER_X);
     }
 
     void placeInputAtBoardGrid(String inputPosition) {
         moves.add(inputPosition);
         switch (inputPosition) {
-            case "1":
-                grid[0][0] = currentPlayer;
+            case POSITION_ONE:
+                grid[INDEX_ZERO][INDEX_ZERO] = currentPlayer;
                 break;
-            case "2":
-                grid[0][1] = currentPlayer;
+            case POSITION_TWO:
+                grid[INDEX_ZERO][INDEX_ONE] = currentPlayer;
                 break;
-            case "3":
-                grid[0][2] = currentPlayer;
+            case POSITION_THREE:
+                grid[INDEX_ZERO][INDEX_TWO] = currentPlayer;
                 break;
-            case "4":
-                grid[1][0] = currentPlayer;
+            case POSITION_FOUR:
+                grid[INDEX_ONE][INDEX_ZERO] = currentPlayer;
                 break;
-            case "5":
-                grid[1][1] = currentPlayer;
+            case POSITION_FIVE:
+                grid[INDEX_ONE][INDEX_ONE] = currentPlayer;
                 break;
-            case "6":
-                grid[1][2] = currentPlayer;
+            case POSITION_SIX:
+                grid[INDEX_ONE][INDEX_TWO] = currentPlayer;
                 break;
-            case "7":
-                grid[2][0] = currentPlayer;
+            case POSITION_SEVEN:
+                grid[INDEX_TWO][INDEX_ZERO] = currentPlayer;
                 break;
-            case "8":
-                grid[2][1] = currentPlayer;
+            case POSITION_EIGHT:
+                grid[INDEX_TWO][INDEX_ONE] = currentPlayer;
                 break;
-            case "9":
-                grid[2][2] = currentPlayer;
+            case POSITION_NINE:
+                grid[INDEX_TWO][INDEX_TWO] = currentPlayer;
                 break;
         }
     }

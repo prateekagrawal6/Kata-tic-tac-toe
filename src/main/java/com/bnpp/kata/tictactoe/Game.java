@@ -7,6 +7,8 @@ import com.bnpp.kata.tictactoe.exception.PositionAlreadyOccupiedException;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
+import static com.bnpp.kata.tictactoe.GameConstant.*;
+
 public class Game {
     private static final Logger logger = Logger.getLogger(Game.class.getName());
 
@@ -22,26 +24,26 @@ public class Game {
         logger.info(board.showBoard());
         Scanner scanner = new Scanner(System.in);
         while (true) {
-            logger.info("Enter the position(1-9) for " + board.getCurrentPlayer() + " : ");
+            logger.info( INPUT_MESSAGE + board.getCurrentPlayer());
             String inputPosition = scanner.next().trim();
             if (!GameUtility.isValidInput(inputPosition)) {
-                throw new InvalidInputException(inputPosition + " position is invalid.");
+                throw new InvalidInputException(inputPosition + INVALID_POSITION_MESSAGE);
             }
             if (GameUtility.isPositionOccupied(board.getMoves(), inputPosition)) {
-                throw new PositionAlreadyOccupiedException(" Input Position " + inputPosition + " is already occupied");
+                throw new PositionAlreadyOccupiedException( inputPosition + POSITION_OCCUPIED_MESSAGE);
             }
             board.placeInputAtBoardGrid(inputPosition);
             logger.info(board.showBoard());
             board.switchPlayer();
-            if (board.getMoves().size() > 4) {
+            if (board.getMoves().size() > NUMBER_FOUR) {
                 winner = GameUtility.checkWinner(board.getGrid());
-                if (winner != null && !winner.equals("_")) {
-                    logger.info("Player " + winner + " Wins!!");
+                if (winner != null && !winner.equals(BLANK_VALUE)) {
+                    logger.info(winner + WINNER_MESSAGE);
                     break;
                 }
             }
             if (GameUtility.isBoardGridMovesExhausted(board.getMoves())) {
-                throw new GameOverException("It's a DRAW as all the moves got exhausted");
+                throw new GameOverException( GAME_OVER_MESSAGE );
             }
         }
     }
