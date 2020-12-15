@@ -73,10 +73,6 @@ public class Board {
         return grid;
     }
 
-    public void setGrid(String[][] grid) {
-        this.grid = grid;
-    }
-
     public String getCurrentPlayer() {
         return currentPlayer;
     }
@@ -87,9 +83,5 @@ public class Board {
 
     public ArrayList<String> getMoves() {
         return moves;
-    }
-
-    public void setMoves(ArrayList<String> moves) {
-        this.moves = moves;
     }
 }

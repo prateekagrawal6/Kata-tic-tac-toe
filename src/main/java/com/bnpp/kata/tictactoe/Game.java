@@ -50,15 +50,7 @@ public class Game {
         return winner;
     }
 
-    public void setWinner(String winner) {
-        this.winner = winner;
-    }
-
     public Board getBoard() {
         return board;
-    }
-
-    public void setBoard(Board board) {
-        this.board = board;
     }
 }
