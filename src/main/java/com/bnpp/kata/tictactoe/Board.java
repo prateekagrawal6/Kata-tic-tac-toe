@@ -19,7 +19,7 @@ public class Board {
 
         currentPlayer = PLAYER_X;
 
-        moves = new ArrayList();
+        moves = new ArrayList<>();
     }
 
     String showBoard() {
@@ -27,7 +27,7 @@ public class Board {
         for (int row = INDEX_ZERO; row < ROW_SIZE; row++) {
             StringBuilder builder = new StringBuilder();
             for (int col = INDEX_ZERO; col < COLUMN_SIZE; col++) {
-                builder.append(grid[row][col] + (col != INDEX_TWO ? PIPE : EMPTY_STRING));
+                builder.append(grid[row][col]).append(col != INDEX_TWO ? PIPE : EMPTY_STRING);
             }
             board.append(builder.toString()).append(NEWLINE_CHAR);
         }
